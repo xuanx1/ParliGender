@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore 2020 Candidates - Sankey</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .filters {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            min-width: 120px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #chart {
+            background: white;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #line-chart {
+            background: white;
+            border-radius: 6px;
+            margin-top: 40px;
+            width: 100%;
+            height: 500px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .chart-section {
+            margin-bottom: 50px;
+        }
+
+        .chart-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .chart-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Line chart styles */
+        .line {
+            fill: none;
+            stroke-width: 1.5px;
+            opacity: 0.7;
+        }
+
+        .line.singapore {
+            stroke: #e24a3f;
+            stroke-width: 3px;
+            opacity: 1;
+        }
+
+        .line.other {
+            stroke: #ddd;
+            stroke-width: 1px;
+            opacity: 0.4;
+        }
+
+        .axis {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .axis-label {
+            font-size: 14px;
+            font-weight: bold;
+            fill: #333;
+        }
+
+        .grid-line {
+            stroke: #f0f0f0;
+            stroke-width: 1px;
+        }
+
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .legend-line {
+            width: 20px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .singapore-legend {
+            background-color: #e24a3f;
+        }
+
+        .other-legend {
+            background-color: #ddd;
+        }
+
+        .highlight-dot {
+            fill: #e24a3f;
+            stroke: white;
+            stroke-width: 2px;
+            opacity: 0;
+        }
+
+        .node rect {
+            cursor: pointer;
+            stroke: #000;
+            stroke-width: 1px;
+        }
+
+        .node text {
+            pointer-events: none;
+            text-shadow: 0 1px 0 #fff;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .link {
+            fill: none;
+            stroke-opacity: 0.5;
+        }
+
+        .link:hover {
+            stroke-opacity: 0.8;
+        }
+
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Sankey -->
+        <div class="chart-section">
+            <div id="chart"></div>
+        </div>
+
+        <!-- line chart -->
+        <div class="chart-section">
+            <div id="line-chart"></div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script src="sankey-visualization.js"></script>
+    <script src="women-seats-chart.js"></script>
+</body>
+</html>
