@@ -1,4 +1,4 @@
-# Singapore 2020 Election Candidates - Sankey Diagram
+# Singapore 2020 Election Candidates
 
 This visualization creates an interactive vertical Sankey diagram showing the flow of candidates from political parties to gender categories for the 2020 Singapore General Election.
 
